@@ -6,7 +6,7 @@ var balls = [];
 var plinkos = [];
 var divisions =[];
 var ball;
-var count;
+var count = 0;
 
 var divisionHeight=300;
 var score =0;
@@ -62,6 +62,8 @@ function draw() {
   Engine.update(engine);
   ground.display();
 
+  if ( count>= 5) gameState = end;
+
   if(gameState == end)
   {
    textSize(100);
@@ -83,8 +85,14 @@ function draw() {
           
             ball=null;
             
-            if ( count>= 5) gameState = end;
-
+          }
+          else if(ball.body.position.x > 201 && ball.body.position.x < 600) {
+            score = score + 500;
+            ball=null;
+          }
+          else if(ball.body.position.x > 601 && ball.body.position.x < 900) {
+            score = score + 200;
+            ball=null;
           }
        }
 
